@@ -1,3 +1,8 @@
+dist: bionic
 language: java
 jdk: oraclejdk11
-script: "cd target && java -jar SQLancer-0.0.1-SNAPSHOT.jar --timeout-seconds 30 sqlite3"
+script:
+- sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test && sudo apt-get update && sudo apt install gcc-10
+- sudo apt-get remove mysql-* && wget https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-server_8.0.20-2ubuntu20.04_amd64.deb-bundle.tar && tar -xvf mysql-server_8.0.20-2ubuntu20.04_amd64.deb-bundle.tar && sudo dpkg -i *.deb
+- "cd target && java -jar SQLancer-0.0.1-SNAPSHOT.jar --timeout-seconds 30 mysql"
+- "cd target && java -jar SQLancer-0.0.1-SNAPSHOT.jar --timeout-seconds 30 sqlite3"
