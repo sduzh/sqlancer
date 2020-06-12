@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 public class TestRandomly {
 
-    private static final int NR_CHECKS = 10000;
     private static final int NR_MIN_RUNS = 100000;
 
     @Test // test that every option is picked
@@ -162,7 +161,7 @@ public class TestRandomly {
     @Test
     public void testNonCachedInteger() {
         assertEquals(0, Randomly.getNotCachedInteger(0, 1));
-        assertThrows(Exception.class, () -> Randomly.getNotCachedInteger(0, 0));
+        assertEquals(0, Randomly.getNotCachedInteger(0, 0));
         assertThrows(Exception.class, () -> Randomly.getNotCachedInteger(5, 0));
     }
 
