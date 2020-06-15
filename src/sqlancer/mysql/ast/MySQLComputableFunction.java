@@ -14,7 +14,7 @@ public class MySQLComputableFunction implements MySQLExpression {
 
     public MySQLComputableFunction(MySQLFunction func, MySQLExpression... args) {
         this.func = func;
-        this.args = args;
+        this.args = args.clone();
     }
 
     public MySQLFunction getFunction() {
@@ -22,7 +22,7 @@ public class MySQLComputableFunction implements MySQLExpression {
     }
 
     public MySQLExpression[] getArguments() {
-        return args;
+        return args.clone();
     }
 
     public enum MySQLFunction {
@@ -182,7 +182,7 @@ public class MySQLComputableFunction implements MySQLExpression {
             return nrArgs;
         }
 
-        public abstract MySQLConstant apply(MySQLConstant[] evaluatedArgs, MySQLExpression[] args);
+        public abstract MySQLConstant apply(MySQLConstant[] evaluatedArgs, MySQLExpression... args);
 
         public static MySQLFunction getRandomFunction() {
             return Randomly.fromOptions(values());

@@ -207,7 +207,7 @@ public class MySQLSetGenerator {
             }
             this.name = name;
             this.prod = prod;
-            this.scopes = scopes;
+            this.scopes = scopes.clone();
         }
 
         /**
@@ -238,7 +238,7 @@ public class MySQLSetGenerator {
         }
 
         public Scope[] getScopes() {
-            return scopes;
+            return scopes.clone();
         }
     }
 

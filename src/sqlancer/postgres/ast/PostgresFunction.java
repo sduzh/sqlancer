@@ -14,14 +14,14 @@ public class PostgresFunction implements PostgresExpression {
         functionWithKnownResult = func;
         this.func = func.getName();
         this.returnType = returnType;
-        this.args = args;
+        this.args = args.clone();
     }
 
     public PostgresFunction(PostgresFunctionWithUnknownResult f, PostgresDataType returnType,
             PostgresExpression... args) {
         this.func = f.getName();
         this.returnType = returnType;
-        this.args = args;
+        this.args = args.clone();
     }
 
     public String getFunctionName() {
@@ -29,7 +29,7 @@ public class PostgresFunction implements PostgresExpression {
     }
 
     public PostgresExpression[] getArguments() {
-        return args;
+        return args.clone();
     }
 
     public enum PostgresFunctionWithResult {
@@ -253,7 +253,7 @@ public class PostgresFunction implements PostgresExpression {
             return nrArgs;
         }
 
-        public abstract PostgresConstant apply(PostgresConstant[] evaluatedArgs, PostgresExpression[] args);
+        public abstract PostgresConstant apply(PostgresConstant[] evaluatedArgs, PostgresExpression... args);
 
         public static PostgresFunctionWithResult getRandomFunction() {
             return Randomly.fromOptions(values());
@@ -276,7 +276,7 @@ public class PostgresFunction implements PostgresExpression {
 
         public abstract PostgresDataType[] getInputTypesForReturnType(PostgresDataType returnType, int nrArguments);
 
-        public boolean checkArguments(PostgresExpression[] constants) {
+        public boolean checkArguments(PostgresExpression... constants) {
             return true;
         }
 

@@ -20,10 +20,7 @@
 		<exclude name="AvoidReassigningParameters" />
 		<exclude name="PositionLiteralsFirstInComparisons" />
 		<exclude name="ForLoopCanBeForeach" />
-		<exclude name="ArrayIsStoredDirectly" />
-		<exclude name="MethodReturnsInternalArray" />
 		<exclude name="CheckResultSet" />
-		<exclude name="UseVarargs" />
 		<exclude name="UseTryWithResources" />
 		<exclude name="AvoidReassigningLoopVariables" />
 		<exclude name="AbstractClassWithoutAbstractMethod" />
@@ -31,7 +28,7 @@
 	</rule>
 
 	<rule ref="category/java/codestyle.xml">
-		<priority>2</priority>
+		<priority>1</priority>
 		<exclude name="MethodArgumentCouldBeFinal" />
 		<exclude name="LocalVariableCouldBeFinal" />
 		<exclude name="ShortVariable" />
@@ -48,9 +45,7 @@
 
 		<!-- TODO -->
 		<exclude name="ShortClassName" />
-		<exclude name="GenericsNaming" />
 		<exclude name="FormalParameterNamingConventions" />
-		<exclude name="UselessParentheses" />
 		<exclude name="LinguisticNaming" />
 		<exclude name="ConfusingTernary" />
 		<exclude name="PrematureDeclaration" />

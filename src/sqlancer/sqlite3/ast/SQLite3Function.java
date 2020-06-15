@@ -13,7 +13,7 @@ public class SQLite3Function extends SQLite3Expression {
 
     public SQLite3Function(ComputableFunction func, SQLite3Expression... args) {
         this.func = func;
-        this.args = args;
+        this.args = args.clone();
     }
 
     public enum ComputableFunction {
@@ -317,7 +317,7 @@ public class SQLite3Function extends SQLite3Expression {
     }
 
     public SQLite3Expression[] getArgs() {
-        return args;
+        return args.clone();
     }
 
     public ComputableFunction getFunc() {

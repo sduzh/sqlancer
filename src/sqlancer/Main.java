@@ -264,7 +264,7 @@ public final class Main {
 
     }
 
-    public static void printArray(Object[] arr) {
+    public static void printArray(Object... arr) {
         for (Object o : arr) {
             System.out.println(o);
         }
@@ -274,7 +274,7 @@ public final class Main {
         System.exit(executeMain(args));
     }
 
-    public static int executeMain(String[] args) throws AssertionError {
+    public static int executeMain(String... args) throws AssertionError {
         List<DatabaseProvider<?, ?>> providers = getDBMSProviders();
         Map<String, DatabaseProvider<?, ?>> nameToProvider = new HashMap<>();
         Map<String, Object> nameToOptions = new HashMap<>();
