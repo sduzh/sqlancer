@@ -12,6 +12,8 @@ import sqlancer.doris.DorisSchema.DorisColumn;
 import sqlancer.doris.DorisSchema.DorisDataType;
 import sqlancer.doris.ast.DorisAggregate;
 import sqlancer.doris.ast.DorisAggregate.DorisAggregateFunction;
+import sqlancer.doris.ast.DorisBinaryArithmeticOperation;
+import sqlancer.doris.ast.DorisBinaryArithmeticOperation.DorisBinaryArithmeticOperator;
 import sqlancer.doris.ast.DorisBinaryBitOperation;
 import sqlancer.doris.ast.DorisBinaryBitOperation.DorisBinaryBitOperator;
 import sqlancer.doris.ast.DorisBinaryComparisonOperation;
@@ -46,8 +48,13 @@ public class DorisExpressionGenerator extends UntypedExpressionGenerator<DorisEx
         UNARY_POSTFIX, //
         CONSTANT, //
         COLUMN, //
-        COMPARISON, REGEX, FUNCTION, BINARY_LOGICAL, CAST, CASE
-        // BINARY_ARITHMETIC
+        COMPARISON,
+        REGEX,
+        FUNCTION,
+        BINARY_LOGICAL,
+        CAST,
+        // CASE // https://github.com/apache/incubator-doris/issues/3874
+        BINARY_ARITHMETIC
     }
 
     @Override
@@ -83,9 +90,9 @@ public class DorisExpressionGenerator extends UntypedExpressionGenerator<DorisEx
         case BINARY_LOGICAL:
             return new DorisBinaryLogicalOperation(generateExpression(depth + 1), generateExpression(depth + 1),
                     DorisBinaryLogicalOperator.getRandom());
-        // case BINARY_ARITHMETIC:
-        // return new DorisBinaryArithmeticOperation(generateExpression(depth + 1), generateExpression(depth + 1),
-        // DorisBinaryArithmeticOperator.getRandom());
+        case BINARY_ARITHMETIC:
+            return new DorisBinaryArithmeticOperation(generateExpression(depth + 1), generateExpression(depth + 1),
+                    DorisBinaryArithmeticOperator.getRandom());
         case CAST:
             return new DorisCastOperation(generateExpression(depth + 1), Randomly.fromOptions(
                         "TINYINT",
@@ -97,10 +104,10 @@ public class DorisExpressionGenerator extends UntypedExpressionGenerator<DorisEx
                         "DATE",
                         "DATETIME",
                         "DECIMAL"));
-        case CASE:
-            int nr = Randomly.fromOptions(1, 2);
-            return new DorisCase(generateExpression(depth + 1), generateExpressions(depth + 1, nr),
-                    generateExpressions(depth + 1, nr), generateExpression(depth + 1));
+        // case CASE:
+        //     int nr = Randomly.fromOptions(1, 2);
+        //     return new DorisCase(generateExpression(depth + 1), generateExpressions(depth + 1, nr),
+        //             generateExpressions(depth + 1, nr), generateExpression(depth + 1));
         default:
             throw new AssertionError();
         }

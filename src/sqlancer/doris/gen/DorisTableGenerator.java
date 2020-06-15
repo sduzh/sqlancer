@@ -50,7 +50,8 @@ public class DorisTableGenerator {
             DorisCompositeDataType type;
             do {
                 type = DorisCompositeDataType.getRandom();
-            } while (i == 0 && type.getPrimitiveDataType() == DorisDataType.FLOATING);
+            } while ((i == 0 && type.getPrimitiveDataType() == DorisDataType.FLOATING) ||
+                    (type.getPrimitiveDataType() == DorisDataType.DECIMAL/*https://github.com/apache/incubator-doris/issues/3875*/));
             appendType(sb, type);
             sb.append(" ");
             if (Randomly.getBooleanWithRatherLowProbability()) {
@@ -77,7 +78,7 @@ public class DorisTableGenerator {
         }
         // sb.append(type.toString());
         if (type.getPrimitiveDataType() == DorisDataType.INT) {
-            sb.append(Randomly.fromOptions("TINYINT", "SMALLINT", "INT", "BIGINT", "LARGEINT"));
+            sb.append(Randomly.fromOptions("TINYINT", "SMALLINT", "INT", "BIGINT" /*, "LARGEINT" https://github.com/apache/incubator-doris/issues/3864*/));
             return;
         }
         sb.append(type);

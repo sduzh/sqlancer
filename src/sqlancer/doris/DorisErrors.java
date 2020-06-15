@@ -49,6 +49,7 @@ public final class DorisErrors {
         errors.add("can't be assigned to some PlanNode.");
         errors.add("GROUP BY expression must not contain aggregate functions");
         errors.add("cannot be cast to org.apache.doris.analysis.StringLiteral");
+        errors.add("Unexpected exception: No match for");
     }
 
     public static void addExpressionHavingErrors(Set<String> errors) {
