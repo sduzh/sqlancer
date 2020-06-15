@@ -30,6 +30,7 @@ import com.beust.jcommander.JCommander.Builder;
 
 import sqlancer.clickhouse.ClickhouseProvider;
 import sqlancer.cockroachdb.CockroachDBProvider;
+import sqlancer.doris.DorisProvider;
 import sqlancer.duckdb.DuckDBProvider;
 import sqlancer.mariadb.MariaDBProvider;
 import sqlancer.mysql.MySQLProvider;
@@ -414,6 +415,7 @@ public final class Main {
         providers.add(new PostgresProvider());
         providers.add(new ClickhouseProvider());
         providers.add(new DuckDBProvider());
+        providers.add(new DorisProvider());
         return providers;
     }
 
