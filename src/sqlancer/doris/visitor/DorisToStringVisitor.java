@@ -112,31 +112,13 @@ public class DorisToStringVisitor extends ToStringVisitor<DorisExpression> imple
             }
             sb.append("JOIN ");
             break;
-        case NATURAL:
-            sb.append("NATURAL ");
-            switch (join.getNaturalJoinType()) {
-            case INNER:
-                break;
-            case LEFT:
-                sb.append("LEFT ");
-                break;
-            case RIGHT:
-                sb.append("RIGHT ");
-                break;
-            default:
-                throw new AssertionError();
-            }
-            sb.append("JOIN ");
-            break;
         default:
             throw new AssertionError();
         }
         visit(join.getRightTable());
         sb.append(" ");
-        if (join.getJoinType() != JoinType.NATURAL) {
-            sb.append("ON ");
-            visit(join.getOnCondition());
-        }
+        sb.append("ON ");
+        visit(join.getOnCondition());
     }
 
     @Override

@@ -17,7 +17,7 @@ public class DorisJoin implements DorisExpression {
     private NaturalJoinType outerType;
 
     public enum JoinType {
-        INNER, NATURAL, LEFT, RIGHT;
+        INNER, LEFT, RIGHT;
 
         public static JoinType getRandom() {
             return Randomly.fromOptions(values());
@@ -56,12 +56,6 @@ public class DorisJoin implements DorisExpression {
         return onCondition;
     }
 
-    public static DorisJoin createNaturalJoin(DorisExpression left, DorisExpression right, NaturalJoinType type) {
-        DorisJoin tiDBJoin = new DorisJoin(left, right, JoinType.NATURAL, null);
-        tiDBJoin.setNaturalJoinType(type);
-        return tiDBJoin;
-    }
-
     public static DorisJoin createInnerJoin(DorisExpression left, DorisExpression right, DorisExpression onClause) {
         return new DorisJoin(left, right, JoinType.INNER, onClause);
     }
@@ -93,9 +87,6 @@ public class DorisJoin implements DorisExpression {
             switch (DorisJoin.JoinType.getRandom()) {
             case INNER:
                 joinExpressions.add(DorisJoin.createInnerJoin(leftTable, rightTable, joinGen.generateExpression()));
-                break;
-            case NATURAL:
-                joinExpressions.add(DorisJoin.createNaturalJoin(leftTable, rightTable, NaturalJoinType.getRandom()));
                 break;
             case LEFT:
                 joinExpressions.add(DorisJoin.createLeftOuterJoin(leftTable, rightTable, joinGen.generateExpression()));

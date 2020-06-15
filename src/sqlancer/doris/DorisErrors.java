@@ -44,6 +44,11 @@ public final class DorisErrors {
         errors.add("Unable to find _ZN5doris18DecimalV2Operators16cast_to_date_valEPN9doris_udf15FunctionContextERKNS1_12DecimalV2ValE");
         // https://github.com/apache/incubator-doris/issues/3864
         errors.add("Unable to find _ZN5doris13CastFunctions16cast_to_date_valEPN9doris_udf15FunctionContextERKNS1_11LargeIntValE");
+        errors.add("Unable to find _ZN5doris13CastFunctions20cast_to_datetime_valEPN9doris_udf15FunctionContextERKNS1_11LargeIntValE");
+        errors.add("org.apache.doris.analysis.DecimalLiteral cannot be cast to org.apache.doris.analysis.StringLiteral");
+        errors.add("can't be assigned to some PlanNode.");
+        errors.add("GROUP BY expression must not contain aggregate functions");
+        errors.add("cannot be cast to org.apache.doris.analysis.StringLiteral");
     }
 
     public static void addExpressionHavingErrors(Set<String> errors) {

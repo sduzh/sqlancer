@@ -161,7 +161,7 @@ public class DorisProvider implements DatabaseProvider<DorisGlobalState, DorisOp
     @Override
     public Connection createDatabase(GlobalState<?> globalState) throws SQLException {
         String databaseName = globalState.getDatabaseName();
-        String url = "jdbc:mysql://127.0.0.1:9031/";
+        String url = "jdbc:mysql://127.0.0.1:9033/";
         Connection con = DriverManager.getConnection(url, globalState.getOptions().getUserName(),
                 globalState.getOptions().getPassword());
         globalState.getState().statements.add(new QueryAdapter("USE test"));
@@ -176,7 +176,7 @@ public class DorisProvider implements DatabaseProvider<DorisGlobalState, DorisOp
             s.execute(createDatabaseCommand);
         }
         con.close();
-        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:9031/" + databaseName,
+        con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:9033/" + databaseName,
                 globalState.getOptions().getUserName(), globalState.getOptions().getPassword());
         return con;
     }

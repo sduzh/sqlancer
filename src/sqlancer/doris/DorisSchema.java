@@ -89,7 +89,7 @@ public class DorisSchema extends AbstractSchema<DorisTable> {
             int size = -1;
             switch (primitiveType) {
             case INT:
-                size = Randomly.fromOptions(1, 2, 4, 8, 16);
+                size = Randomly.fromOptions(1, 2, 4, 8 /*, 16*/);
                 break;
             case FLOATING:
                 size = Randomly.fromOptions(4, 8);

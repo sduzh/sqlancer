@@ -48,7 +48,9 @@ public class DorisTableGenerator {
             sb.append(columns.get(i).getName());
             sb.append(" ");
             DorisCompositeDataType type;
-            type = DorisCompositeDataType.getRandom();
+            do {
+                type = DorisCompositeDataType.getRandom();
+            } while (i == 0 && type.getPrimitiveDataType() == DorisDataType.FLOATING);
             appendType(sb, type);
             sb.append(" ");
             if (Randomly.getBooleanWithRatherLowProbability()) {
